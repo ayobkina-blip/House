@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { HousingService } from '../housing.service';
+/*
+import { HousingService } from '../housing.service';*/
 import { HousingLocation } from '../housinglocation';
 import {FormsModule} from '@angular/forms';
 
@@ -39,7 +40,8 @@ import {FormsModule} from '@angular/forms';
 
           <label for="email">Email</label>
           <input id="email" type="email"  [(ngModel)]="c" class="form-control" >
-          <button type="button"  (click)="submitApplication()" class="primary">Apply now</button>
+          <!--
+          <button type="button"  (click)="submitApplication()" class="primary">Apply now</button>-->
 
           <!--</form>-->
       </section>
@@ -50,14 +52,15 @@ import {FormsModule} from '@angular/forms';
 export class DetailsComponent {
 
   route: ActivatedRoute = inject(ActivatedRoute);
-  housingService = inject(HousingService);
+  /*
+  housingService = inject(HousingService);*/
   housingLocation: HousingLocation | undefined;
 
   a="pepito";
   b="";
   c="";
  
-
+/*
   constructor() {
     const housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
     this.housingLocation = this.housingService.getHousingLocationById(housingLocationId);
@@ -66,5 +69,5 @@ export class DetailsComponent {
   submitApplication() {
     this.housingService.submitApplication(this.a,this.b,this.c);   
   
-  }
+  }*/
 }
