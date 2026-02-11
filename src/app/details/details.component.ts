@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-/*
-import { HousingService } from '../housing.service';*/
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { HousingService } from '../housing.service';
 import { HousingLocation } from '../housinglocation';
 import {FormsModule} from '@angular/forms';
 
@@ -29,22 +29,7 @@ import {FormsModule} from '@angular/forms';
           <li>Does this location have laundry: {{housingLocation?.laundry}}</li>
         </ul>
       </section>
-      <section class="listing-apply">
-        <h2 class="section-heading">Apply now to live here</h2>
-       <!-- <form  (submit)="submitApplication()"> -->
-          <label for="first-name">First Name</label>
-          <input id="first-name" [(ngModel)]="a" class="form-control" type="text" >
-
-          <label for="last-name">Last Name</label>
-          <input id="last-name" [(ngModel)]="b" class="form-control" type="text" >
-
-          <label for="email">Email</label>
-          <input id="email" type="email"  [(ngModel)]="c" class="form-control" >
-          <!--
-          <button type="button"  (click)="submitApplication()" class="primary">Apply now</button>-->
-
-          <!--</form>-->
-      </section>
+      <button type="button" (click)="deletion()">Eliminar</button>
     </article>
   `,
   styleUrls: ['./details.component.css'],
@@ -52,22 +37,24 @@ import {FormsModule} from '@angular/forms';
 export class DetailsComponent {
 
   route: ActivatedRoute = inject(ActivatedRoute);
-  /*
-  housingService = inject(HousingService);*/
-  housingLocation: HousingLocation | undefined;
-
-  a="pepito";
-  b="";
-  c="";
- 
-/*
-  constructor() {
-    const housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
-    this.housingLocation = this.housingService.getHousingLocationById(housingLocationId);
-  }
-
-  submitApplication() {
-    this.housingService.submitApplication(this.a,this.b,this.c);   
   
-  }*/
+  housingService = inject(HousingService);
+  housingLocation: HousingLocation | undefined;
+  housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
+  router = inject(Router);
+
+
+  constructor() {
+    
+    this.housingLocation = this.housingService.getHousingLocationById(this.housingLocationId);
+    
+    
+  }
+  deletion(){
+    this.housingService.delete(this.housingLocationId);
+    this.router.navigate(['/']);
+    //this.window.history.back();
+    
+  }
+  
 }

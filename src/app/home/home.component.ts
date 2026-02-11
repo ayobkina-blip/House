@@ -13,31 +13,19 @@ import { HousingService } from '../housing.service';*/
     HousingLocationComponent
   ],
   template: `
-  <!--
+  
     <section>
       <form>
-        <input type="text" placeholder="Filter by city" #filter>
-        <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
+        <input type="text" placeholder="Filter by city" #filter><!--
+        <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>-->
       </form>
     </section>
     <section class="results">
       <app-housing-location
-        *ngFor="let housingLocation of filteredLocationList"
+        *ngFor="let housingLocation of housingLocationList"
         [housingLocation]="housingLocation">
       </app-housing-location>
-    </section>-->
-
-    
-    @for (item of housingLocationList; track item.id) {
-      @if(item.laundry){
-        <p>Esta casa tiene lavadora: {{item.name}}</p><br>
-      }@else {
-      <section>
-        <p>Esta casa no tiene lavadora: {{item.name}}</p><br>
-      </section>
-      }
-      
-    }
+    </section>
     
 
   `,

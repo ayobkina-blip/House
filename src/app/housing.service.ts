@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HousingLocation } from './housinglocation';
-/*
+
 @Injectable({
   providedIn: 'root'
 })
@@ -118,7 +118,26 @@ export class HousingService {
     return this.housingLocationList.find(housingLocation => housingLocation.id === id);
   }
 
+  delete(id: number) {
+    for (let index = 0; index < this.housingLocationList.length; index++) {
+      if (this.housingLocationList[index].id === id) {
+        this.housingLocationList.splice(index, 1);
+      }
+    }
+  }   
+  save(nueva: HousingLocation){
+    this.housingLocationList.push(nueva);
+  }
+  put(housingLocation: HousingLocation){
+    for (let index = 0; index < this.housingLocationList.length; index++) {
+      if(this.housingLocationList[index].id == housingLocation.id){
+        this.housingLocationList[index] = housingLocation;
+      }
+      
+    }
+  }
+
   submitApplication(firstName: string, lastName: string, email: string) {
     console.log(`Homes application received: firstName: ${firstName}, lastName: ${lastName}, email: ${email}.`);
   }
-}*/
+}
