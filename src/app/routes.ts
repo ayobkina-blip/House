@@ -1,18 +1,32 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { DetailsComponent } from './details/details.component';
+
+import { ViviendasComponent } from './Viviendas/viviendas.component';
+import { DetallesVivComponent } from './DetallesVivienda/DetallesViv.component';
+import { EditVivComponent } from './EditVivienda/EditViv.component';
+
 
 const routeConfig: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: ViviendasComponent,
     title: 'Home page'
   },
   {
-    path: 'details/:id',
-    component: DetailsComponent,
-    title: 'Home details'
-  }
+    path: 'DescViv/:id',
+    component: DetallesVivComponent,    
+    title: 'Detallles de la vivienda'
+  },
+  {
+    path: 'EditViv/:id',
+    component: EditVivComponent,    
+    title: 'Detallles de la vivienda'
+  },
+  {
+    path: 'EditViv',
+    component: EditVivComponent,    
+    title: 'Detallles de la vivienda'
+  },
+
 ];
 
 export default routeConfig;

@@ -4,10 +4,11 @@ import { HousingLocation } from './housinglocation';
 @Injectable({
   providedIn: 'root'
 })
-export class HousingService {
+export class ViviendasService {
   readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa';
 
-  protected housingLocationList: HousingLocation[] = [
+ 
+   viviendasList: HousingLocation[] = [
     {
       id: 0,
       name: 'Acme Fresh Start Housing',
@@ -19,7 +20,7 @@ export class HousingService {
       laundry: true
     },
     {
-      id: 1,
+      id: 11,
       name: 'A113 Transitional Housing',
       city: 'Santa Monica',
       state: 'CA',
@@ -110,34 +111,45 @@ export class HousingService {
     }
   ];
 
-  getAllHousingLocations(): HousingLocation[] {
-    return this.housingLocationList;
+  GetAll(): HousingLocation[] {
+    return this.viviendasList;
   }
 
-  getHousingLocationById(id: number): HousingLocation | undefined {
-    return this.housingLocationList.find(housingLocation => housingLocation.id === id);
+  GetOne(id: number): HousingLocation  {
+
+   //  return this.viviendasList.find(h => h.id === id);
+   
+    var v:HousingLocation ={  id:0,  name: "",  city: "",  state: "",  photo: "",  availableUnits: 0,  wifi: false,  laundry: false};
+
+    for (var i=0;i<this.viviendasList.length;i++)
+      if (this.viviendasList[i].id == id)
+        v=this.viviendasList[i];
+    return v;
   }
 
-  delete(id: number) {
-    for (let index = 0; index < this.housingLocationList.length; index++) {
-      if (this.housingLocationList[index].id === id) {
-        this.housingLocationList.splice(index, 1);
-      }
-    }
-  }   
-  save(nueva: HousingLocation){
-    this.housingLocationList.push(nueva);
-  }
-  put(housingLocation: HousingLocation){
-    for (let index = 0; index < this.housingLocationList.length; index++) {
-      if(this.housingLocationList[index].id == housingLocation.id){
-        this.housingLocationList[index] = housingLocation;
-      }
-      
-    }
+  GetOne1(id: number): HousingLocation  {  
+    return this.viviendasList[id];
   }
 
-  submitApplication(firstName: string, lastName: string, email: string) {
-    console.log(`Homes application received: firstName: ${firstName}, lastName: ${lastName}, email: ${email}.`);
+
+ Eliminar(id:number){  
+   
+    for (var i=0;i<this.viviendasList.length;i++)
+      if (this.viviendasList[i].id == id)
+          this.viviendasList.splice(i,1);
+  
+ }
+
+  Nueva(nueva: HousingLocation) {    
+    this.viviendasList.push(nueva);
   }
+
+  Modificar(vivienda: HousingLocation) {
+    
+    for (var i=0;i<this.viviendasList.length;i++)
+      if (this.viviendasList[i].id == vivienda.id)
+          this.viviendasList[i] = vivienda; 
+    
+  }
+
 }
