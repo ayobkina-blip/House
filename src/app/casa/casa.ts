@@ -17,6 +17,7 @@ export class Casa {
 
   @Input() oneHouse:HouseInterface | any;
   @Output() casaBorrada = new EventEmitter<number>();
+  @Output() casaDuplicada = new EventEmitter<HouseInterface>();
   onImageError(event: any) {
     event.target.src = 'casa1.jpg';
   }
@@ -28,6 +29,12 @@ export class Casa {
     this.service.deleteHouse(this.oneHouse?.id);
     this.casaBorrada.emit(this.oneHouse.id);
     
+  }
+
+  duplicarCasa(){
+    this.service.duplicateHouse(this.oneHouse?.id).then(nuevaCasa => {
+      this.casaDuplicada.emit(nuevaCasa);
+    });
   }
 
   ClickSobreEstrellas(message: number): void {

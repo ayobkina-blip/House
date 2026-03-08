@@ -1,8 +1,7 @@
-
 <section>
     <form>
-      <input type="text" placeholder="Filter by city" #filter>
-      <button class="primary" type="button">Search</button>
+      <input type="text" placeholder="Filter by city" [(ngModel)]="filterText" (input)="onFilterChange()" name="filterText">
+      <button class="primary" type="button" (click)="filterCasas()">Search</button>
       &nbsp;
       <button class="primary" type="button" [routerLink]="['/nueva-casa']">Nuevo</button>
     </form>
@@ -11,7 +10,7 @@
    <!-- <app-messages></app-messages>  -->
   </section>
   <section class="results">
-    @for (item of casas; track item.id) {
-      <app-casa [oneHouse]="item" (casaBorrada)="eliminarDeLista($event)"></app-casa>
+    @for (item of casasFiltradas; track item.id) {
+      <app-casa [oneHouse]="item" (casaBorrada)="eliminarDeLista($event)" (casaDuplicada)="agregarCasaDuplicada($event)"></app-casa>
     }
   </section>

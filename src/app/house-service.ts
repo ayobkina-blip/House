@@ -70,6 +70,30 @@ export class HouseService {
     })
   }
 
+  duplicateHouse(id:number){
+    return this.getOneHouse(id).then(casa => {
+      const nuevaCasa = { 
+        ...casa, 
+        name: casa.name + ' - Copia',
+        id: 0
+      };
+      return this.addHouse(nuevaCasa).then(response => response.json()).then(data => {
+        // Transformar la respuesta a HouseInterface
+        return {
+          id: data.id || 0,
+          name: data.name || nuevaCasa.name,
+          city: data.city || casa.city,
+          state: data.state || casa.state,
+          photo: data.photo || casa.photo,
+          availableUnits: data.availableUnits || casa.availableUnits,
+          wifi: data.wifi || casa.wifi,
+          laundry: data.laundry || casa.laundry,
+          rating: data.rating || casa.rating
+        };
+      });
+    })
+  }
+
   getVecinosByHouse(id:number){
     return fetch(this.ruta+"/vecinos?filter=idlocation,eq,"+id)
     .then(response => response.json())
