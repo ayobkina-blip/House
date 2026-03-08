@@ -2,58 +2,72 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
 
-## Development server
+## Estructura del Proyecto
 
-To start a local development server, run:
+El directorio `src/` contiene el código principal de la aplicación organizado de la siguiente manera:
 
-```bash
-ng serve
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+src/
+├── app/
+│   ├── Componentes/
+│   │   ├── anadir-vecino/           # Componente Añadir Vecino
+│   │   │   ├── anadir-vecino.ts
+│   │   │   ├── anadir-vecino.html
+│   │   │   ├── anadir-vecino.css
+│   │   │   └── anadir-vecino.spec.ts
+│   │   ├── casa/                    # Componente Casa
+│   │   │   ├── casa.ts
+│   │   │   ├── casa.html
+│   │   │   ├── casa.css
+│   │   │   └── casa.spec.ts
+│   │   ├── casas/                   # Componente Lista de Casas
+│   │   │   ├── casas.ts
+│   │   │   ├── casas.html
+│   │   │   ├── casas.css
+│   │   │   └── casas.spec.ts
+│   │   ├── detalles-casa/           # Componente Detalles de Casa
+│   │   │   ├── detalles-casa.ts
+│   │   │   ├── detalles-casa.html
+│   │   │   ├── detalles-casa.css
+│   │   │   └── detalles-casa.spec.ts
+│   │   ├── detalles-vecino/         # Componente Detalles de Vecino
+│   │   │   ├── detalles-vecino.ts
+│   │   │   ├── detalles-vecino.html
+│   │   │   └── detalles-vecino.css
+│   │   ├── star/                    # Componente Estrellas (Valoración)
+│   │   │   ├── star.ts
+│   │   │   ├── star.html
+│   │   │   └── star.css
+│   │   ├── ver-evolucion-precios/   # Componente Ver Evolución de Precios
+│   │   │   ├── ver-evolucion-precios.ts
+│   │   │   ├── ver-evolucion-precios.html
+│   │   │   └── ver-evolucion-precios.css
+│   │   ├── ver-reparaciones/        # Componente Ver Reparaciones
+│   │   │   ├── ver-reparaciones.ts
+│   │   │   ├── ver-reparaciones.html
+│   │   │   └── ver-reparaciones.css
+│   │   └── ver-vecinos/             # Componente Ver Vecinos
+│   │       ├── ver-vecinos.ts
+│   │       ├── ver-vecinos.html
+│   │       └── ver-vecinos.css
+│   ├── Servicios/
+│   │   ├── house-service.ts         # Servicio principal de gestión de casas
+│   │   └── house-service.spec.ts    # Tests del servicio
+│   ├── Interfaces/
+│   │   ├── evolucion-precios-interface.ts  # Interfaz de evolución de precios
+│   │   ├── house-interface.ts              # Interfaz de datos de casa
+│   │   ├── reparacion-interface.ts         # Interfaz de reparaciones
+│   │   └── vecino-interface.ts             # Interfaz de vecinos
+│   ├── Configuración de la Aplicación/
+│   │   ├── app.config.ts           # Configuración de la aplicación
+│   │   ├── app.routes.ts           # Configuración de rutas
+│   │   ├── app.ts                  # Componente principal de la app
+│   │   ├── app.html                # Plantilla principal de la app
+│   │   ├── app.css                 # Estilos principales de la app
+│   │   └── app.spec.ts             # Tests del componente principal
+│   └── Recursos/
+│       └── casa1.jpg               # Imagen de casa
+├── index.html                      # Archivo HTML principal
+├── main.ts                         # Punto de entrada de la aplicación
+└── styles.css                      # Estilos globales
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
