@@ -1,0 +1,67 @@
+
+<div class="form-container">
+  <h2>{{ isEditMode ? 'Editar Casa' : 'Nueva Casa' }}</h2>
+  
+  <div class="form-section">
+    <h3>Información Básica</h3>
+    
+    <div class="form-group" *ngIf="isEditMode">
+      <label for="id">ID</label>
+      <input id="id" type="text" [value]="casa.id" disabled class="readonly-field">
+      <div class="field-hint">El ID no se puede modificar</div>
+    </div>
+    
+    <div class="form-group">
+      <label for="name">Nombre de la Casa</label>
+      <input id="name" type="text" [(ngModel)]="casa.name" placeholder="Ej: Casa del Sol">
+    </div>
+    
+    <div class="form-group">
+      <label for="city">Ciudad</label>
+      <input id="city" type="text" [(ngModel)]="casa.city" placeholder="Ej: Madrid">
+    </div>
+    
+    <div class="form-group">
+      <label for="state">Provincia/Estado</label>
+      <input id="state" type="text" [(ngModel)]="casa.state" placeholder="Ej: Madrid">
+    </div>
+  </div>
+  
+  <div class="form-section">
+    <h3>Detalles Adicionales</h3>
+    
+    <div class="form-group">
+      <label for="photo">URL de la Foto</label>
+      <input id="photo" type="text" [(ngModel)]="casa.photo" placeholder="https://ejemplo.com/foto.jpg">
+    </div>
+    
+    <div class="form-group">
+      <label for="availableUnits">Unidades Disponibles</label>
+      <input id="availableUnits" type="number" [(ngModel)]="casa.availableUnits" min="0">
+    </div>
+    
+    <div class="form-group">
+      <label for="wifi">WiFi (0 = No, 1 = Sí)</label>
+      <input id="wifi" type="number" [(ngModel)]="casa.wifi" min="0" max="1">
+    </div>
+    
+    <div class="form-group">
+      <label for="laundry">Lavandería (0 = No, 1 = Sí)</label>
+      <input id="laundry" type="number" [(ngModel)]="casa.laundry" min="0" max="1">
+    </div>
+    
+    <div class="form-group">
+      <label for="rating">Valoración (0-5)</label>
+      <input id="rating" type="number" [(ngModel)]="casa.rating" min="0" max="5" step="0.1">
+    </div>
+  </div>
+  
+  <div class="form-actions">
+    <button class="btn btn-primary" (click)="guardar()">
+      {{ isEditMode ? 'Guardar Cambios' : 'Crear Casa' }}
+    </button>
+    <button class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+    <button class="btn btn-info" *ngIf="isEditMode" [routerLink]="['/ver-reparaciones', casa.id]">Ver Reparaciones</button>
+    <button class="btn btn-success" *ngIf="isEditMode" [routerLink]="['/ver-evolucion-precios', casa.id]">Evolución Precios</button>
+  </div>
+</div>

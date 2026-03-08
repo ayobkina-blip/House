@@ -1,0 +1,37 @@
+<div class="form-container">
+  <h2>Añadir Vecino</h2>
+  
+  <div class="form-section">
+    <h3>Información de la Casa</h3>
+    
+    <div class="form-group">
+      <label for="idlocation">ID de la Casa</label>
+      <input id="idlocation" type="text" [value]="id" disabled class="readonly-field">
+      <div class="field-hint">ID de la casa a la que se asignará el vecino</div>
+    </div>
+  </div>
+  
+  <div class="form-section">
+    <h3>Información del Vecino</h3>
+    
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input id="nombre" type="text" [(ngModel)]="vecino.nombre" placeholder="Ej: Juan">
+    </div>
+    
+    <div class="form-group">
+      <label for="apellido">Apellido</label>
+      <input id="apellido" type="text" [(ngModel)]="vecino.apellido" placeholder="Ej: Pérez">
+    </div>
+    
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" type="email" [(ngModel)]="vecino.email" placeholder="Ej: juan.perez@email.com">
+    </div>
+  </div>
+  
+  <div class="form-actions">
+    <button class="btn btn-primary" (click)="guardar()">Añadir Vecino</button>
+    <button class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+  </div>
+</div>

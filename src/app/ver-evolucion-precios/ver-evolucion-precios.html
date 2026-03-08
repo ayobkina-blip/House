@@ -1,0 +1,149 @@
+<div class="form-container">
+  <div class="header-section">
+    <h2>Evolución de Precios de {{ casa?.name || 'Casa' }}</h2>
+    <div class="house-info">
+      <p><strong>Dirección:</strong> {{ casa?.city }}, {{ casa?.state }}</p>
+      <p><strong>Precio Actual:</strong> €{{ getCurrentPrice() | number:'2.2-2' }}</p>
+      <p><strong>Variación Total:</strong> 
+        <span [class]="getPriceVariation().amount >= 0 ? 'positive' : 'negative'">
+          {{ getPriceVariation().amount >= 0 ? '+' : '' }}€{{ getPriceVariation().amount | number:'2.2-2' }}
+        </span>
+      </p>
+    </div>
+  </div>
+
+  <div class="actions-section">
+    <button class="btn btn-primary" (click)="toggleAddForm()">
+      {{ showAddForm ? 'Cancelar' : 'Añadir Precio' }}
+    </button>
+    <button class="btn btn-secondary" (click)="volver()">Volver a Detalles</button>
+  </div>
+
+  <div class="form-section" *ngIf="showAddForm">
+    <h3>Añadir Nuevo Registro de Precio</h3>
+    
+    <div class="form-group">
+      <label for="fecha">Fecha</label>
+      <input id="fecha" type="date" [(ngModel)]="nuevaEvolucion.Fecha">
+    </div>
+    
+    <div class="form-group">
+      <label for="precio">Precio (€)</label>
+      <input id="precio" type="number" [(ngModel)]="nuevaEvolucion.Precio" min="0" step="0.01" placeholder="0.00">
+    </div>
+    
+    <div class="form-actions">
+      <button class="btn btn-primary" (click)="guardarEvolucion()">Añadir</button>
+      <button class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Sección de Edición Masiva -->
+  <div class="universal-edit-section">
+    <h3>Edición Masiva</h3>
+    
+    <div class="universal-edit-forms">
+      <!-- Edición Masiva de Fecha -->
+      <div class="universal-edit-form">
+        <h4>Editar Fecha de Todas</h4>
+        <div class="universal-edit-inputs">
+          <div class="form-group">
+            <label for="nuevaFechaUniversal">Nueva Fecha para Todas</label>
+            <input id="nuevaFechaUniversal" type="date" [(ngModel)]="nuevaFechaUniversal" [disabled]="editandoMasivamente">
+          </div>
+        </div>
+        <button class="btn btn-warning" (click)="editarFechaMasiva()" [disabled]="editandoMasivamente">
+          <span *ngIf="!editandoMasivamente">Aplicar Fecha a Todos</span>
+          <span *ngIf="editandoMasivamente">Editando...</span>
+        </button>
+      </div>
+
+      <!-- Edición Masiva de Precio -->
+      <div class="universal-edit-form">
+        <h4>Editar Precio de Todas</h4>
+        <div class="universal-edit-inputs">
+          <div class="form-group">
+            <label for="nuevoPrecioUniversal">Nuevo Precio para Todas (€)</label>
+            <input id="nuevoPrecioUniversal" type="number" [(ngModel)]="nuevoPrecioUniversal" min="0" [disabled]="editandoMasivamente">
+          </div>
+        </div>
+        <button class="btn btn-warning" (click)="editarPrecioMasivo()" [disabled]="editandoMasivamente">
+          <span *ngIf="!editandoMasivamente">Aplicar Precio a Todos</span>
+          <span *ngIf="editandoMasivamente">Editando...</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de Eliminación por Rangos -->
+  <div class="range-delete-section">
+    <h3>Eliminación por Rangos</h3>
+    
+    <div class="range-forms">
+      <!-- Eliminación por Rango de Precios -->
+      <div class="range-form">
+        <h4>Por Rango de Precios</h4>
+        <div class="range-inputs">
+          <div class="form-group">
+            <label for="precioMin">Precio Mínimo (€)</label>
+            <input id="precioMin" type="number" [(ngModel)]="precioMin" min="0" [disabled]="eliminandoPorRango">
+          </div>
+          <div class="form-group">
+            <label for="precioMax">Precio Máximo (€)</label>
+            <input id="precioMax" type="number" [(ngModel)]="precioMax" min="0" [disabled]="eliminandoPorRango">
+          </div>
+        </div>
+        <button class="btn btn-danger" (click)="eliminarPorRangoPrecio()" [disabled]="eliminandoPorRango">
+          <span *ngIf="!eliminandoPorRango">🗑️ Eliminar por Precios</span>
+          <span *ngIf="eliminandoPorRango">⏳ Eliminando...</span>
+        </button>
+      </div>
+
+      <!-- Eliminación por Rango de Fechas -->
+      <div class="range-form">
+        <h4>Por Rango de Fechas</h4>
+        <div class="range-inputs">
+          <div class="form-group">
+            <label for="fechaInicio">Fecha Inicio</label>
+            <input id="fechaInicio" type="date" [(ngModel)]="fechaInicio" [disabled]="eliminandoPorRango">
+          </div>
+          <div class="form-group">
+            <label for="fechaFin">Fecha Fin</label>
+            <input id="fechaFin" type="date" [(ngModel)]="fechaFin" [disabled]="eliminandoPorRango">
+          </div>
+        </div>
+        <button class="btn btn-danger" (click)="eliminarPorRangoFechas()" [disabled]="eliminandoPorRango">
+          <span *ngIf="!eliminandoPorRango">🗑️ Eliminar por Fechas</span>
+          <span *ngIf="eliminandoPorRango">⏳ Eliminando...</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="evolution-section">
+    <h3>Historial de Precios ({{ evolucionPrecios.length }} registros)</h3>
+    
+    <div *ngIf="evolucionPrecios.length === 0" class="no-prices">
+      <p>No hay registros de precios para esta casa.</p>
+    </div>
+    
+    <div class="prices-list" *ngIf="evolucionPrecios.length > 0">
+      <div class="price-card" *ngFor="let evolucion of evolucionPrecios; let i = index">
+        <div class="price-info">
+          <h4>{{ evolucion.Fecha | date:'dd/MM/yyyy' }}</h4>
+          <p class="price">€{{ evolucion.Precio | number:'2.2-2' }}</p>
+          <p class="variation" *ngIf="i < evolucionPrecios.length - 1">
+            vs {{ evolucionPrecios[i + 1].Fecha | date:'dd/MM/yyyy' }}:
+            <span [class]="evolucion.Precio >= evolucionPrecios[i + 1].Precio ? 'positive' : 'negative'">
+              {{ evolucion.Precio >= evolucionPrecios[i + 1].Precio ? '+' : '' }}
+              €{{ (evolucion.Precio - evolucionPrecios[i + 1].Precio) | number:'2.2-2' }}
+            </span>
+          </p>
+        </div>
+        <div class="price-actions">
+          <button class="btn btn-small btn-delete" (click)="eliminarEvolucion(evolucion.id)">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

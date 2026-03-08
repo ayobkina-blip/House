@@ -1,0 +1,302 @@
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.header-section {
+  margin-bottom: 20px;
+}
+
+.header-section h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.house-info p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.actions-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #545b62;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+.btn-small {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+.form-section {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.form-section h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.repairs-section h3 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.no-repairs {
+  text-align: center;
+  padding: 40px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  color: #666;
+}
+
+.repairs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.repair-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.repair-info h4 {
+  margin: 0 0 5px 0;
+  color: #333;
+}
+
+.repair-info .price {
+  margin: 0;
+  color: #007bff;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.repair-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.universal-edit-section {
+  background-color: #e3f2fd;
+  border: 1px solid #90caf9;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.universal-edit-section h3 {
+  color: #1565c0;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.universal-edit-forms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.universal-edit-form {
+  background-color: white;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.universal-edit-form h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 16px;
+}
+
+.universal-edit-inputs {
+  margin-bottom: 15px;
+}
+
+.universal-edit-form .btn {
+  width: 100%;
+  font-size: 14px;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: #212529;
+  border: none;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  transform: translateY(-1px);
+}
+
+.btn-warning:disabled {
+  background-color: #ffc107;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.range-delete-section {
+  background-color: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.range-delete-section h3 {
+  color: #856404;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.range-forms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.range-form {
+  background-color: white;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.range-form h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 16px;
+}
+
+.range-inputs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.range-inputs .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.range-inputs .form-group label {
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+.range-inputs .form-group input {
+  padding: 6px 8px;
+  font-size: 14px;
+}
+
+.range-form .btn {
+  width: 100%;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .range-forms {
+    grid-template-columns: 1fr;
+  }
+  
+  .range-inputs {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .universal-edit-forms {
+    grid-template-columns: 1fr;
+  }
+}

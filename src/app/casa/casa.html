@@ -1,0 +1,29 @@
+<section class="listing">
+    <img class="listing-photo" [src]="oneHouse?.photo" (error)="onImageError($event)" alt="Exterior photo of {{oneHouse?.name}}">
+    <h2 class="listing-heading">{{ oneHouse?.name }}</h2>
+    <p class="listing-location">{{ oneHouse?.city}}, {{oneHouse?.state }}</p>
+    
+    <div class="features-section">
+        <div class="feature-item">
+            <span class="feature-text">Unidades: <strong>{{ oneHouse?.availableUnits }}</strong></span>
+        </div>
+        <div class="feature-item">
+            <span class="feature-text">WiFi: {{ oneHouse?.wifi ? 'Sí' : 'No' }}</span>
+        </div>
+        <div class="feature-item">
+            <span class="feature-text">Lavadora: {{ oneHouse?.laundry ? 'Sí' : 'No' }}</span>
+        </div>
+    </div>
+    
+    <div class="rating-section">
+        <app-star [rating]='oneHouse.rating' [id]='oneHouse.id' 
+        (ratingClicked)='ClickSobreEstrellas($event)'></app-star>
+    </div>
+    
+    <div class="buttons-section">
+        <button class="primary" type="button" [routerLink]="['/ver-vecinos', oneHouse?.id]">Ver vecinos</button>
+        <button class="primary" type="button" (click)="borrarCasa()">Delete</button>
+        <button class="primary" type="button" [routerLink]="['/detalles-casa', oneHouse?.id]">Detalles</button>
+        <button class="primary" type="button" [routerLink]="['/ver-evolucion-precios', oneHouse?.id]">Precios</button>
+    </div>
+</section>

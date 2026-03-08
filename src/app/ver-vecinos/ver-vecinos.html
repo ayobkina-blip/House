@@ -1,0 +1,87 @@
+<div class="form-container">
+  <div class="header-section">
+    <h2>Vecinos de {{ casa?.name || 'Casa' }}</h2>
+    <div class="house-info">
+      <p><strong>Dirección:</strong> {{ casa?.city }}, {{ casa?.state }}</p>
+    </div>
+  </div>
+
+  <div class="actions-section">
+    <button class="btn btn-primary" (click)="toggleAddForm()">
+      {{ showAddForm ? 'Cancelar' : 'Añadir Vecino' }}
+    </button>
+    <button class="btn btn-secondary" (click)="volver()">Volver a Casas</button>
+  </div>
+
+  <div class="form-section" *ngIf="showAddForm">
+    <h3>Añadir Nuevo Vecino</h3>
+    
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input id="nombre" type="text" [(ngModel)]="nuevoVecino.nombre" placeholder="Ej: Juan">
+    </div>
+    
+    <div class="form-group">
+      <label for="apellido">Apellido</label>
+      <input id="apellido" type="text" [(ngModel)]="nuevoVecino.apellido" placeholder="Ej: Pérez">
+    </div>
+    
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" type="email" [(ngModel)]="nuevoVecino.email" placeholder="Ej: juan.perez@email.com">
+    </div>
+    
+    <div class="form-actions">
+      <button class="btn btn-primary" (click)="guardarVecino()">Añadir</button>
+      <button class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Sección de Eliminación por Dominio -->
+  <div class="domain-delete-section">
+    <h3>Eliminación por Dominio de Correo</h3>
+    <div class="domain-delete-form">
+      <div class="form-group">
+        <label for="dominio">Dominio de correo:</label>
+        <input 
+          id="dominio" 
+          type="text" 
+          [(ngModel)]="dominioCorreo" 
+          placeholder="Ej: @gmail.com o @perez.es"
+          [disabled]="eliminando"
+        >
+      </div>
+      <div class="domain-actions">
+        <button 
+          class="btn btn-danger" 
+          (click)="eliminarPorDominio()"
+          [disabled]="eliminando || !dominioCorreo.trim()"
+        >
+          <span *ngIf="!eliminando">🗑️ Eliminar por Dominio</span>
+          <span *ngIf="eliminando">⏳ Eliminando...</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="neighbors-section">
+    <h3>Vecinos Actuales ({{ vecinos.length }})</h3>
+    
+    <div *ngIf="vecinos.length === 0" class="no-neighbors">
+      <p>No hay vecinos registrados para esta casa.</p>
+    </div>
+    
+    <div class="neighbors-list" *ngIf="vecinos.length > 0">
+      <div class="neighbor-card" *ngFor="let vecino of vecinos">
+        <div class="neighbor-info">
+          <h4>{{ vecino.nombre }} {{ vecino.apellido }}</h4>
+          <p class="email">{{ vecino.email }}</p>
+        </div>
+        <div class="neighbor-actions">
+          <button class="btn btn-small btn-edit" [routerLink]="['/detalles-vecino', vecino.id]">Editar</button>
+          <button class="btn btn-small btn-delete" (click)="eliminarVecino(vecino.id)">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
