@@ -46,7 +46,9 @@ export class DetallesCasa {
   
   guardar(){
     if (this.isEditMode) {
-      this.service.updateHouse(this.casa.id, this.casa);
+      this.service.updateHouse(this.casa.id, this.casa).then(() => {
+        this.router.navigate(['/casas']);
+      });
     } else {
       this.service.addHouse(this.casa).then(() => {
         this.router.navigate(['/casas']);
