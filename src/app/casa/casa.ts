@@ -5,11 +5,12 @@ import { HouseInterface } from '../house-interface';
 import { HouseService } from '../house-service';
 import { RouterLink } from "@angular/router";
 import { Star } from '../star/star';
+import { ReparacionHouse } from '../reparacion-house/reparacion-house';
 import { VecinoInterface } from '../vecino-interface';
 
 @Component({
   selector: 'app-casa',
-  imports: [CommonModule, FormsModule, RouterLink, Star],
+  imports: [CommonModule, FormsModule, RouterLink, Star, ReparacionHouse],
   templateUrl: './casa.html',
   styleUrl: './casa.css',
 })
@@ -18,6 +19,7 @@ export class Casa {
   @Input() oneHouse:HouseInterface | any;
   @Output() casaBorrada = new EventEmitter<number>();
   @Output() casaDuplicada = new EventEmitter<HouseInterface>();
+  
   onImageError(event: any) {
     event.target.src = 'casa1.jpg';
   }
@@ -43,6 +45,11 @@ export class Casa {
       this.oneHouse.rating = 1;
     }
     this.service.updateHouse(this.oneHouse.id, this.oneHouse);
+  }
+  Alerta(message: boolean): void {
+    
+    alert("Cambios aplicados")
+    
   }
 
 }

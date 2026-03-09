@@ -19,6 +19,8 @@
         <app-star [rating]='oneHouse.rating' [id]='oneHouse.id' 
         (ratingClicked)='ClickSobreEstrellas($event)'></app-star>
     </div>
+
+    <app-reparacion-house (calculado)="Alerta(true)" [id]='oneHouse.id'></app-reparacion-house>
     
     <div class="buttons-section">
         <button class="primary" type="button" [routerLink]="['/ver-vecinos', oneHouse?.id]">Ver vecinos</button>

@@ -137,12 +137,12 @@ export class HouseService {
   }
 
   getReparacionesByHouse(id:number){
-    return fetch(this.ruta+"/reparaciones?filter=id_vivienda,eq,"+id)
+    return fetch(this.ruta+"/Reparaciones?filter=id_vivienda,eq,"+id)
     .then(response => response.json())
     .then(response => {
 
       let data = [];
-      data = response.reparaciones.records;
+      data = response.Reparaciones.records;
       
       
       return data.map((reparacion: any):ReparacionInterface => ({
@@ -155,7 +155,7 @@ export class HouseService {
   }
 
   addReparacion(reparacion:ReparacionInterface){
-    return fetch(this.ruta+"/reparaciones", {
+    return fetch(this.ruta+"/Reparaciones", {
       method:"POST", 
       headers:{ "Content-Type": "application/json" },
       body: JSON.stringify(reparacion)
@@ -163,13 +163,13 @@ export class HouseService {
   }
 
   deleteReparacion(id:number){
-    return fetch(this.ruta+"/reparaciones/"+id, {
+    return fetch(this.ruta+"/Reparaciones/"+id, {
       method:"DELETE"
     })
   }
 
   updateReparacion(id:number, reparacion:ReparacionInterface){
-    return fetch(this.ruta+"/reparaciones/"+id, {
+    return fetch(this.ruta+"/Reparaciones/"+id, {
       method:"PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(reparacion)
@@ -177,12 +177,12 @@ export class HouseService {
   }
 
   getEvolucionPreciosByHouse(id:number){
-    return fetch(this.ruta+"/evo_precios_viv?filter=id_vivienda,eq,"+id)
+    return fetch(this.ruta+"/Evo_precios_viv?filter=id_vivienda,eq,"+id)
     .then(response => response.json())
     .then(response => {
 
       let data = [];
-      data = response.evo_precios_viv.records;
+      data = response.Evo_precios_viv.records;
       
       
       return data.map((evolucion: any):EvolucionPreciosInterface => ({
@@ -195,7 +195,7 @@ export class HouseService {
   }
 
   addEvolucionPrecio(evolucion:EvolucionPreciosInterface){
-    return fetch(this.ruta+"/evo_precios_viv", {
+    return fetch(this.ruta+"/Evo_precios_viv", {
       method:"POST", 
       headers:{ "Content-Type": "application/json" },
       body: JSON.stringify(evolucion)
@@ -203,13 +203,13 @@ export class HouseService {
   }
 
   deleteEvolucionPrecio(id:number){
-    return fetch(this.ruta+"/evo_precios_viv/"+id, {
+    return fetch(this.ruta+"/Evo_precios_viv/"+id, {
       method:"DELETE"
     })
   }
 
   updateEvolucionPrecio(id:number, evolucion:EvolucionPreciosInterface){
-    return fetch(this.ruta+"/evo_precios_viv/"+id, {
+    return fetch(this.ruta+"/Evo_precios_viv/"+id, {
       method:"PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(evolucion)

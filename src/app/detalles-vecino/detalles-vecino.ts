@@ -37,7 +37,6 @@ export class DetallesVecino {
         this.cd.detectChanges();
       })
     } else {
-      // Create mode - set default idlocation from route if available
       this.vecino.idlocation = parseInt(id) || 0;
     }
   }

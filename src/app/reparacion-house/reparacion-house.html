@@ -1,0 +1,51 @@
+
+
+<!-- INCREMENTAR PRECIOS -->
+
+<div class="universal-edit-form">
+<h4>Editar Precio de reparaciones con +1000€</h4>
+<div class="universal-edit-inputs">
+    <div class="form-group">
+    <label for="nuevoPrecioUniversal">Importe</label>
+    <input id="nuevoPrecioUniversal" type="number" [(ngModel)]="nuevoPrecioUniversal" min="0" [disabled]="editandoMasivamente">
+    </div>
+</div>
+<button class="btn btn-warning" (click)="incrementar()" [disabled]="editandoMasivamente">
+
+    @if(!editandoMasivamente){
+        <span>Incrementar</span>
+    }
+    @if(editandoMasivamente){
+        <span>Editando...</span>
+    }
+    
+</button>
+</div>
+    
+
+  <div class="repairs-section">
+    <h3>Reparaciones Realizadas ({{ reparaciones.length }})</h3>
+    
+    @if(reparaciones.length === 0){
+        <div class="no-repairs">
+            <p>No hay reparaciones registradas para esta casa.</p>
+        </div>
+    }
+
+    @if (reparaciones.length > 0) {
+        <div class="repairs-list">
+
+            @for (reparacion of reparaciones; track reparaciones) {
+
+                <div class="repair-card">
+                    <div class="repair-info">
+                    <h4>{{ reparacion.Fecha | date:'dd/MM/yyyy' }}</h4>
+                    <p class="price">€{{ reparacion.Precio | number:'2.2-2' }}</p>
+                    </div>
+                </div>
+
+            }
+        
+        </div>
+    }
+    
